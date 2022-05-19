@@ -6,7 +6,7 @@ function setBackgroundColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-const Statistics = ({ data }) => {
+const Statistics = ({ data, title }) => {
   const statElement = data.map(el => (
     <li
       className={style.item}
@@ -20,7 +20,7 @@ const Statistics = ({ data }) => {
 
   return (
     <section className={style.statistics}>
-      <h2 className={style.title}>Upload stats</h2>
+      {title && <h2 className={style.title}>{title}</h2>}
 
       <ul className={style.statList}>{statElement}</ul>
     </section>
@@ -34,6 +34,7 @@ Statistics.defaultProps = {
 };
 
 Statistics.propTypes = {
+  title: PropTypes.string,
   data: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
